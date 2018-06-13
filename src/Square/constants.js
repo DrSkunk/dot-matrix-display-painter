@@ -1,0 +1,2 @@
+export const TOGGLE_PIXEL = 'TOGGLE_PIXEL'
+export const CLEAR_SQUARE = 'CLEAR_SQUARE'
