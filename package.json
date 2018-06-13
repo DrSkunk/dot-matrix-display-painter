@@ -2,6 +2,7 @@
   "name": "dot-matrix-display-painter",
   "version": "0.1.0",
   "dependencies": {
+    "gh-pages": "^1.2.0",
     "react": "^16.3.2",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.3.2",
@@ -15,10 +16,16 @@
     "redux-immutable-state-invariant": "^2.1.0",
     "redux-mock-store": "^1.5.1"
   },
+  "homepage": "https://sebastiaanjansen.be/dot-matrix-display-painter",
+  "license": "MIT",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint src",
+    "precommit": "lint-staged"
   }
 }
