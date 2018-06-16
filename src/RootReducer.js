@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import squares from "./Squares/reducer";
+import frames from "./Frames/reducer";
 export default combineReducers({
-  squares
+  frames
 });

@@ -70,18 +70,24 @@ export const initialState = {
 };
 
 const reducer = function squareReducer(state = initialState, action) {
+  console.log("square", action);
+
   switch (action.type) {
     case TOGGLE_PIXEL:
-      const { index } = action;
+      const { pixelIndex } = action;
       const { pixels } = state;
-      if (!Number.isInteger(index) || index < 0 || index >= pixels.length) {
+      if (
+        !Number.isInteger(pixelIndex) ||
+        pixelIndex < 0 ||
+        pixelIndex >= pixels.length
+      ) {
         return state;
       }
       return {
         pixels: [
-          ...pixels.slice(0, index),
-          !pixels[index],
-          ...pixels.slice(index + 1)
+          ...pixels.slice(0, pixelIndex),
+          !pixels[pixelIndex],
+          ...pixels.slice(pixelIndex + 1)
         ]
       };
     case CLEAR_SQUARE:

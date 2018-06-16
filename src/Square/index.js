@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import injectSheet from "react-jss";
 import Pixel from "../Pixel";
+import { togglePixel, clearSquare } from "../Frames/actions";
 
 const styles = {
   root: {
@@ -15,15 +16,22 @@ const styles = {
 
 class Square extends Component {
   render() {
-    const { squares, classes, onPixelClick, index, onClearSquare } = this.props;
-    const { pixels } = squares[index];
+    const {
+      classes,
+      onPixelClick,
+      frames,
+      frameIndex,
+      squareIndex,
+      onClearSquare
+    } = this.props;
+    const { pixels } = frames[frameIndex][squareIndex];
 
     const pixelsDom = pixels.map((active, i) => {
       return (
         <Pixel
-          key={Math.random()}
+          key={`square${squareIndex}pixel${i}`}
           active={active}
-          callback={() => onPixelClick(index, i)}
+          callback={() => onPixelClick(frameIndex, squareIndex, i)}
         />
       );
     });
@@ -32,7 +40,7 @@ class Square extends Component {
         <div className={classes.root}>{pixelsDom}</div>
         <button
           onClick={() => {
-            onClearSquare(index);
+            onClearSquare(frameIndex, squareIndex);
           }}
         >
           Clear
@@ -44,17 +52,17 @@ class Square extends Component {
 
 const mapStateToProps = state => {
   return {
-    squares: state.squares
+    frames: state.frames.frames
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onPixelClick: (squareIndex, index) => {
-      dispatch({ type: "TOGGLE_PIXEL", index, squareIndex });
+    onPixelClick: (frameIndex, squareIndex, pixelIndex) => {
+      dispatch(togglePixel(frameIndex, squareIndex, pixelIndex));
     },
-    onClearSquare: squareIndex => {
-      dispatch({ type: "CLEAR_SQUARE", squareIndex });
+    onClearSquare: (frameIndex, squareIndex) => {
+      dispatch(clearSquare(frameIndex,squareIndex));
     }
   };
 };

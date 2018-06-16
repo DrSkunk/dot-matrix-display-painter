@@ -9,31 +9,31 @@ describe("Square reducer", () => {
     expect(
       reducer(initialState, {
         type: TOGGLE_PIXEL,
-        index: -1
+        pixelIndex: -1
       })
     ).toEqual(initialState);
     expect(
       reducer(initialState, {
         type: TOGGLE_PIXEL,
-        index: 64
+        pixelIndex: 64
       })
     ).toEqual(initialState);
     expect(
       reducer(initialState, {
         type: TOGGLE_PIXEL,
-        index: 164
+        pixelIndex: 164
       })
     ).toEqual(initialState);
     expect(
       reducer(initialState, {
         type: TOGGLE_PIXEL,
-        index: Number.MAX_VALUE
+        pixelIndex: Number.MAX_VALUE
       })
     ).toEqual(initialState);
     expect(
       reducer(initialState, {
         type: TOGGLE_PIXEL,
-        index: "zero"
+        pixelIndex: "zero"
       })
     ).toEqual(initialState);
   });
@@ -42,7 +42,7 @@ describe("Square reducer", () => {
     expect(
       reducer(initialState, {
         type: TOGGLE_PIXEL,
-        index: 0
+        pixelIndex: 0
       })
     ).toEqual({
       pixels: [
@@ -116,7 +116,7 @@ describe("Square reducer", () => {
     expect(
       reducer(initialState, {
         type: TOGGLE_PIXEL,
-        index: 63
+        pixelIndex: 63
       })
     ).toEqual({
       pixels: [

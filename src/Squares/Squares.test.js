@@ -2,7 +2,7 @@ import reducer from "./reducer";
 import { initialState } from "./reducer";
 import { initialState as squareInitialState } from "../Square/reducer";
 
-import { TOGGLE_PIXEL, ADD_SQUARE, REMOVE_SQUARE } from "./constants";
+import { TOGGLE_PIXEL, ADD_SQUARE } from "./constants";
 
 describe("Squares reducer", () => {
   it("should return the initial state Squares", () => {
@@ -10,28 +10,28 @@ describe("Squares reducer", () => {
     expect(
       reducer(initialState, {
         type: TOGGLE_PIXEL,
-        index: -1
+        pixelIndex: -1
       })
     ).toEqual(initialState);
     expect(reducer(undefined, {})).toEqual(initialState);
     expect(
       reducer(initialState, {
         type: TOGGLE_PIXEL,
-        index: 10,
+        pixelIndex: 10,
         squareIndex: -1
       })
     ).toEqual(initialState);
     expect(
       reducer(initialState, {
         type: TOGGLE_PIXEL,
-        index: 10,
+        pixelIndex: 10,
         squareIndex: 10
       })
     ).toEqual(initialState);
     expect(
       reducer(initialState, {
         type: TOGGLE_PIXEL,
-        index: 10,
+        pixelIndex: 10,
         squareIndex: "hey"
       })
     ).toEqual(initialState);
@@ -41,7 +41,7 @@ describe("Squares reducer", () => {
     expect(
       reducer(initialState, {
         type: TOGGLE_PIXEL,
-        index: 0,
+        pixelIndex: 0,
         squareIndex: 0
       })
     ).toEqual([
@@ -123,17 +123,17 @@ describe("Squares reducer", () => {
     ]);
   });
 
-  it("should should add and remove squares", () => {
-    expect(
-      reducer(initialState, {
-        type: ADD_SQUARE
-      })
-    ).toEqual([...initialState, squareInitialState]);
-    // expect(
-    //   reducer(initialState, {
-    //     type: REMOVE_SQUARE,
-    //     squareIndex: 2
-    //   })
-    // ).toEqual([squareInitialState,squareInitialState,squareInitialState]);
-  });
+  // it("should should add and remove squares", () => {
+  //   expect(
+  //     reducer(initialState, {
+  //       type: ADD_SQUARE
+  //     })
+  //   ).toEqual([...initialState, squareInitialState]);
+  //   // expect(
+  //   //   reducer(initialState, {
+  //   //     type: REMOVE_SQUARE,
+  //   //     squareIndex: 2
+  //   //   })
+  //   // ).toEqual([squareInitialState,squareInitialState,squareInitialState]);
+  // });
 });

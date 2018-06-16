@@ -5,6 +5,7 @@ import Highlight from "react-highlight";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Squares from "./Squares";
 import "../node_modules/highlight.js/styles/idea.css";
+import Frames from "./Frames";
 
 const styles = {
   framebuffer: {
@@ -35,10 +36,10 @@ function toFrameBuffer(squares) {
 class App extends Component {
   render() {
     const { classes, squares } = this.props;
-    const framebuffer = toFrameBuffer(squares);
+    const framebuffer = "";//toFrameBuffer(squares);
     return (
       <div>
-        <Squares />
+        <Frames/>
         <CopyToClipboard
           text={framebuffer}
           onCopy={() => alert("Copied to clipboard")}

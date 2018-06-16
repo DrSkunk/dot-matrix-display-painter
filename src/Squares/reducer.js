@@ -1,4 +1,7 @@
-import { TOGGLE_PIXEL, ADD_SQUARE, REMOVE_SQUARE, CLEAR_SQUARE } from "./constants";
+import {
+  TOGGLE_PIXEL,
+  CLEAR_SQUARE
+} from "./constants";
 import squareReducer from "../Square/reducer";
 import { initialState as squareInitialState } from "../Square/reducer";
 
@@ -14,6 +17,8 @@ export const initialState = [
 ];
 
 const reducer = function squaresReducer(state = initialState, action) {
+  console.log("squares", action)
+
   switch (action.type) {
     case TOGGLE_PIXEL:
       const { squareIndex } = action;
@@ -30,7 +35,6 @@ const reducer = function squaresReducer(state = initialState, action) {
         ...state.slice(squareIndex + 1)
       ];
     case CLEAR_SQUARE:
-
       if (
         !Number.isInteger(action.squareIndex) ||
         action.squareIndex < 0 ||
@@ -43,20 +47,6 @@ const reducer = function squaresReducer(state = initialState, action) {
         squareReducer(state[action.squareIndex], action),
         ...state.slice(action.squareIndex + 1)
       ];
-
-    case ADD_SQUARE:
-      return [...state, squareInitialState];
-    case REMOVE_SQUARE:
-      if (
-        !Number.isInteger(state.squareIndex) ||
-        state.squareIndex < 0 ||
-        state.squareIndex >= state.length
-      ) {
-        return state;
-      }
-      let copy = Object.assign({}, state);
-      copy.splice(state.squareIndex, 1);
-      return copy;
     default:
       return state;
   }

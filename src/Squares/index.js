@@ -12,36 +12,19 @@ const styles = {
 
 class Squares extends Component {
   render() {
-    const { classes, squares, onAddSquare } = this.props;
+    const { classes, frames, frameIndex } = this.props;
+    const squares = frames.frames[frameIndex];
     const squareComponents = squares.map((_, i) => (
-      <Square key={`square${i}`} index={i} />
+      <Square key={`square${i}`} squareIndex={i} frameIndex={frameIndex} />
     ));
-    return (
-      <div className={classes.root}>
-        {squareComponents}
-        {/* <button onClick={onAddSquare}>Add Square</button> */}
-      </div>
-    );
+    return <div className={classes.root}>{squareComponents}</div>;
   }
 }
 
 const mapStateToProps = state => ({
-  squares: state.squares
+  frames: state.frames
 });
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onPixelClick: index => {
-      dispatch({ type: "TOGGLE_PIXEL", index });
-    },
-    onAddSquare: _ => {
-      dispatch({ type: "ADD_SQUARE" });
-    }
-  };
-};
-const connected = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Squares);
+const connected = connect(mapStateToProps)(Squares);
 
 export default injectSheet(styles)(connected);
