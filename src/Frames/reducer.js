@@ -4,7 +4,6 @@ import {
   NEXT_FRAME,
   PREVIOUS_FRAME,
   ADD_FRAME,
-  DELETE_FRAME,
   REMOVE_FRAME
 } from "./constants";
 import { initialState as squaresInitialState } from "../Squares/reducer";
