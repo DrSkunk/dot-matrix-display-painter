@@ -24,13 +24,26 @@ class Square extends Component {
       squareIndex,
       onClearSquare
     } = this.props;
+
+    let previousPixels;
+    let hasPreviousPixels = false;
+    if (frameIndex !== 0 && frameIndex !== frames.length) {
+      previousPixels = frames[frameIndex - 1][squareIndex].pixels;
+      hasPreviousPixels = true;
+    }
     const { pixels } = frames[frameIndex][squareIndex];
 
     const pixelsDom = pixels.map((active, i) => {
+      let ghost;
+      if(hasPreviousPixels) {
+        ghost = previousPixels[i]
+        console.log(ghost)
+      }
       return (
         <Pixel
           key={`square${squareIndex}pixel${i}`}
           active={active}
+          ghost={ghost}
           callback={() => onPixelClick(frameIndex, squareIndex, i)}
         />
       );
@@ -62,7 +75,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(togglePixel(frameIndex, squareIndex, pixelIndex));
     },
     onClearSquare: (frameIndex, squareIndex) => {
-      dispatch(clearSquare(frameIndex,squareIndex));
+      dispatch(clearSquare(frameIndex, squareIndex));
     }
   };
 };

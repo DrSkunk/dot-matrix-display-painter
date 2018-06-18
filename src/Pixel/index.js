@@ -17,10 +17,12 @@ const styles = {
 
 class Pixel extends Component {
   render() {
-    const { classes, active, callback } = this.props;
+    const { classes, active, ghost, callback } = this.props;
     let style = { backgroundColor: "white" };
     if (active) {
       style.backgroundColor = "red";
+    } else if (ghost) {
+      style.backgroundColor = "pink";
     }
     return <div className={classes.root} style={style} onClick={callback} />;
   }

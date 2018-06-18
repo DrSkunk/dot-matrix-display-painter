@@ -1,7 +1,7 @@
 import {
   TOGGLE_PIXEL,
   ADD_FRAME,
-  DELETE_FRAME,
+  REMOVE_FRAME,
   CLEAR_SQUARE,
   NEXT_FRAME,
   PREVIOUS_FRAME
@@ -33,5 +33,19 @@ export function showNextFrame() {
 export function showPreviousFrame() {
   return {
     type: PREVIOUS_FRAME
+  };
+}
+
+export function addFrame(frameIndex) {
+  return {
+    type: ADD_FRAME,
+    frameIndex
+  };
+}
+
+export function removeFrame(frameIndex) {
+  return {
+    type: REMOVE_FRAME,
+    frameIndex
   };
 }
